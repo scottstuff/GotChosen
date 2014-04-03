@@ -1,0 +1,5 @@
+got_chosen_blog:
+    resource: "@GotChosenBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

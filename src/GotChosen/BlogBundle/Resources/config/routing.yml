@@ -1,0 +1,11 @@
+GotChosenBlogBundle:
+  resource: "@GotChosenBlogBundle/Controller"
+  type: annotation
+  
+_blog_secured:
+    resource: "@GotChosenBlogBundle/Controller/SecurityController.php"
+    type:     annotation
+
+_blog:
+    resource: "@GotChosenBlogBundle/Controller/AdminController.php"
+    type:     annotation

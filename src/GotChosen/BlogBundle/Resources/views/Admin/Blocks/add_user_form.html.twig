@@ -1,0 +1,53 @@
+<h2>Add User</h2>
+ {{ form_start(userForm) }}
+     {{ form_errors(userForm) }}
+
+     <div class="row form-group">
+         {{ form_label(userForm.firstName) }}
+         {{ form_errors(userForm.firstName) }}
+         <div class='col-xs-4'>
+             {{ form_widget(userForm.firstName) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(userForm.lastName) }}
+         {{ form_errors(userForm.lastName) }}
+         <div class='col-xs-4'>
+             {{ form_widget(userForm.lastName) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(userForm.userType) }}
+         {{ form_errors(userForm.userType) }}
+         <div class='col-xs-4'>
+             {{ form_widget(userForm.userType) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(userForm.userName) }}
+         {{ form_errors(userForm.userName) }}
+         <div class='col-xs-4'>
+             {{ form_widget(userForm.userName) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(userForm.password) }}
+         {{ form_errors(userForm.password) }}
+         <div class='col-xs-4'>
+             {{ form_widget(userForm.password) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_widget(userForm.save) }}
+     </div>
+
+     {{ form_row(userForm._token) }}
+
+ {{ form_end(userForm) }}
+
+

@@ -1,0 +1,29 @@
+<h2>Add Post</h2>
+ {{ form_start(postForm) }}
+     {{ form_errors(postForm) }}
+
+     <div class="row form-group">
+         {{ form_label(postForm.postTitle) }}
+         {{ form_errors(postForm.postTitle) }}
+         <div class='col-xs-4'>
+             {{ form_widget(postForm.postTitle) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(postForm.postBody) }}
+         {{ form_errors(postForm.postBody) }}
+         <div class='col-xs-4'>
+             {{ form_widget(postForm.postBody) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_widget(postForm.save) }}
+     </div>
+
+     {{ form_row(postForm._token) }}
+
+ {{ form_end(postForm) }}
+
+

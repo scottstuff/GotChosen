@@ -18,11 +18,25 @@ class PostingType extends AbstractType
                     'label_attr' => array ('class' => 'col-xs-2'),
                     'attr' => array ('class' => 'form-control'))
                      )
-                ->add('postBody', 'text', array (
+                ->add('postBody', 'textarea', array (
                     'label' => 'Blog',
                     'label_attr' => array ('class' => 'col-xs-2'),
                     'attr' => array ('class' => 'form-control'))
                      )
+                ->add('poster', 'entity', array (
+                    'class' => 'GotChosenBlogBundle:Author',
+                    'property' => 'FullName',
+                    'label' => 'Author',
+                    'label_attr' => array ('class' => 'col-xs-2'),
+                    'attr' => array ('class' => 'form-control'),
+                    )
+                    )
+                ->add('tags', 'collection', array(
+                        'type'         => new TagType(),
+                        'label' => ' ',
+                        'allow_add'    => true,
+                        'allow_delete'    => true,
+                    ))
                 ->add('save', 'submit', array ('attr' => array ('class' => 'btn btn-lg btn-success')))
                 ;
     }

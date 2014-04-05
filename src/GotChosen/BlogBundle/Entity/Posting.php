@@ -27,6 +27,12 @@ class Posting
     protected $poster;
     
     /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable(name="posts_tags")
+     */
+    protected $tags;
+
+    /**
      * @ORM\Column(name="post_title", type="string", length=100)
      */
     protected $postTitle;
@@ -81,6 +87,24 @@ class Posting
     public function setPoster($poster)
     {
         $this->poster = $poster;
+        
+        return $this;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    
+    /**
+     * @return Posting
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
         
         return $this;
     }
@@ -162,4 +186,34 @@ class Posting
         return $this->updatedAt;  
     }  
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \GotChosen\BlogBundle\Entity\Tag $tags
+     * @return Posting
+     */
+    public function addTags(\GotChosen\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \GotChosen\BlogBundle\Entity\Tag $tags
+     */
+    public function removeTags(\GotChosen\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
 }

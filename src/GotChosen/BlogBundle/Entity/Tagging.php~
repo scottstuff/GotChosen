@@ -1,0 +1,159 @@
+<?php
+// src/GotChosen/BlogBundle/Entity/Author.php
+namespace GotChosen\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="tagging")
+ */
+class Tagging
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="tag_name", type="string", length=100)
+     */
+    protected $tagName;
+
+    /**
+     * @ORM\Column(name="tag_description", type="string", length=100)
+     */
+    protected $tagDescription;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Posting", mappedBy="taggings")
+     **/
+    protected $tagged_postings;
+
+
+    /**
+     * Collections of postings
+     */
+    public function __construct() {
+        $this->tagged_postings = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * @return Tagging
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $this;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getTagged_postings()
+    {
+        return $this->tagged_postings;
+    }
+    
+    /**
+     * @return Tagging
+     */
+    public function setTagged_postings($tagged_postings)
+    {
+        $this->tagged_postings = $tagged_postings;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getTagtName()
+    {
+        return $this->tagName;
+    }
+    
+    /**
+     * @return Tagging
+     */
+    public function setTagName($tagName)
+    {
+        $this->tagName = $tagName;
+
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getTagDescription()
+    {
+        return $this->tagDescription;
+    }
+    
+    /**
+     * @return Tagging
+     */
+    public function setTagDescription($tagDescription)
+    {
+        $this->tagDescription = $tagDescription;
+
+        return $this;
+    }
+    
+
+    /**
+     * Get tagName
+     *
+     * @return string 
+     */
+    public function getTagName()
+    {
+        return $this->tagName;
+    }
+
+    /**
+     * Add tagged_postings
+     *
+     * @param \GotChosen\BlogBundle\Entity\Posting $taggedPostings
+     * @return Tagging
+     */
+    public function addTaggedPosting(\GotChosen\BlogBundle\Entity\Posting $taggedPostings)
+    {
+        $this->tagged_postings[] = $taggedPostings;
+
+        return $this;
+    }
+
+    /**
+     * Remove tagged_postings
+     *
+     * @param \GotChosen\BlogBundle\Entity\Posting $taggedPostings
+     */
+    public function removeTaggedPosting(\GotChosen\BlogBundle\Entity\Posting $taggedPostings)
+    {
+        $this->tagged_postings->removeElement($taggedPostings);
+    }
+
+    /**
+     * Get tagged_postings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTaggedPostings()
+    {
+        return $this->tagged_postings;
+    }
+}

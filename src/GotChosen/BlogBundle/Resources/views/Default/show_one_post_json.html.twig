@@ -1,61 +1,40 @@
 {% extends "::base.html.twig" %}
-{% block title %}GotChosen Blog{% endblock %}
+{% block title %}GotChosen | Add Post{% endblock %}
 {% block body %}
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">Project name</h3>
-      </div>
+        {% include 'GotChosenBlogBundle:Default:Blocks/nav.html.twig' %}
+<!-- I left this javascript here as it has a id template variable -->            
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#show_post").append('Please wait...');
+    var div_start = '<div class="row form-group"><label class="col-xs-2 required">';
+    var div_mid = '</label><div class="col-xs-4"><input type="text" class="form-control" disabled="disabled" value="';
+    var div_mid_body = '</label><div class="col-xs-4"><textarea class="form-control" disabled="disabled">';
+    var div_end = '"/></div>';
+    var div_end_body = '</textarea></div>';
+    
+    $.getJSON('getJSON/{{ id }}', function(data) {
+        $("#show_post").empty();
+        $("#show_post").append(div_start + 'Record ID' + div_mid + data.id + div_end);
+        $("#show_post").append(div_start + 'Post Title' + div_mid + data.postTitle + div_end);
+        $("#show_post").append(div_start + 'Post Body' + div_mid_body + data.postBody + div_end_body);
+        $("#show_post").append(div_start + 'First Name' + div_mid + data.poster.firstName + div_end);
+        $("#show_post").append(div_start + 'Last Last' + div_mid + data.poster.lastName + div_end);
+        $("#show_post").append(div_start + 'Created' + div_mid + data.createdAt.date + div_end);
+        
+        $.each(data.tags, function(i, field) {
+            $("#show_post").append(div_start + 'Tag'+ (i + 1) + div_mid + field + div_end);
+        });
+        $("#show_post").append('<br><a href="../show">Back to Posts</a>');
+    });
+});
+</script>
+            
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <p>One Post Via JSON</p>
+            <div id="show_post"></div>
 
-      <div class="jumbotron">
-        <h1>Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
-
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
         </div>
-      </div>
-
-      <div class="footer">
-        <p>&copy; Company 2014</p>
-      </div>
-
-    </div> 
-
-
-Splash page goes here!
-<br >
-<h2>Posts</h2>
-<ul>
-{% for posting in postings %}
-        <li><a href='one_post_view?id={{ posting.id }}'>{{ posting.postTitle }} - {{ posting.createdAt|date('l, F jS, Y h:i:s A') }}</a></li>
-{% endfor %}
-</ul>
-
-<a href='login'>Login</a>
 {% endblock %}

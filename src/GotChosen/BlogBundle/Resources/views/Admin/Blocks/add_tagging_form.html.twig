@@ -1,0 +1,28 @@
+ {{ form_start(taggingForm) }}
+     {{ form_errors(taggingForm) }}
+
+     <div class="row form-group">
+         {{ form_label(taggingForm.tagName) }}
+         {{ form_errors(taggingForm.tagName) }}
+         <div class='col-xs-4'>
+             {{ form_widget(taggingForm.tagName) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_label(taggingForm.tagDescription) }}
+         {{ form_errors(taggingForm.tagDescription) }}
+         <div class='col-xs-4'>
+             {{ form_widget(taggingForm.tagDescription) }}
+         </div>
+     </div>
+
+     <div class="row form-group">
+         {{ form_widget(taggingForm.save) }}
+     </div>
+
+     {{ form_row(taggingForm._token) }}
+
+ {{ form_end(taggingForm) }}
+
+

@@ -157,4 +157,49 @@ class Author
         return $this;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->postings = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add postings
+     *
+     * @param \GotChosen\BlogBundle\Entity\Posting $postings
+     * @return Author
+     */
+    public function addPosting(\GotChosen\BlogBundle\Entity\Posting $postings)
+    {
+        $this->postings[] = $postings;
+
+        return $this;
+    }
+
+    /**
+     * Remove postings
+     *
+     * @param \GotChosen\BlogBundle\Entity\Posting $postings
+     */
+    public function removePosting(\GotChosen\BlogBundle\Entity\Posting $postings)
+    {
+        $this->postings->removeElement($postings);
+    }
+
+    /**
+     * Get postings
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPostings()
+    {
+        return $this->postings;
+    }
+
+    public function getFullName() {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }   
 }
+

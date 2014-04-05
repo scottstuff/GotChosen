@@ -2,7 +2,6 @@
 // src/GotChosen/BlogBundle/Entity/AuthorManager.php
 namespace GotChosen\BlogBundle\Entity;
 
-//use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
@@ -28,11 +27,11 @@ class AuthorManager
 
     public function __construct(EntityManager $em, $class)
     {
-        // Even though we have three properties, we only need two constructor arguments...
+
         $this->em = $em;
         $this->class = $class;
         $this->repo = $em->getRepository($class);
-        // ... because we can find the repo using those two
+
     }
 
     /**
@@ -48,10 +47,17 @@ class AuthorManager
 
     public function saveAuthor(Author $author)
     {
-//        $author->setFirstName($firstName) setPost($author);
+
         $this->em->persist($author);
         $this->em->flush();
-//        $this->dispatcher->dispatch('foo_bundle.post.comment_added', new CommentEvent($post, $comment));
+
     }
 
+    /**
+    * @return Author
+    */
+    public function find($id)
+    {
+       return $this->repo->find($id);
+    }
 }

@@ -1,17 +1,14 @@
 {% extends "::base.html.twig" %}
 {% block title %}GotChosen | Add Post{% endblock %}
 {% block body %}
+    <div class="container">
+        {% include 'GotChosenBlogBundle:Default:Blocks/nav.html.twig' %}
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h2 class="title">Add Post</h2>
+ 
+               {% include 'GotChosenBlogBundle:Admin:Blocks/add_posting_form.html.twig' %}
 
-<div class='container'>
-
-    {% include 'GotChosenBlogBundle:Admin:Blocks/add_posting_form.html.twig' %}
-
-</div>
-   
-
-
-<a href='list_all'>Back</a>
-<br>
-<a href='splash'>Home</a>
-
+        </div>
+    </div>
 {% endblock %}

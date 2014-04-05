@@ -11,7 +11,7 @@ class PostingRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT posting FROM GotChosenBlogBundle:Posting posting 
-                    ORDER BY posting.postingTitle ASC'
+                    ORDER BY posting.postTitle ASC'
             )
             ->getResult();
     }

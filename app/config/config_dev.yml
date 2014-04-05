@@ -45,9 +45,26 @@ services:
         tags:
             - { name: 'twig.extension' }
 
-# services:
     getchosen.blog.manager.author:
         class: GotChosen\BlogBundle\Entity\AuthorManager
         arguments:
             em: "@doctrine.orm.entity_manager"
             class: GotChosen\BlogBundle\Entity\Author
+
+    getchosen.blog.manager.posting:
+        class: GotChosen\BlogBundle\Entity\PostingManager
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            class: GotChosen\BlogBundle\Entity\Posting
+
+    getchosen.blog.manager.tagging:
+        class: GotChosen\BlogBundle\Entity\TaggingManager
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            class: GotChosen\BlogBundle\Entity\Tagging
+
+    getchosen.blog.manager.tag:
+        class: GotChosen\BlogBundle\Entity\TagManager
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            class: GotChosen\BlogBundle\Entity\Tag

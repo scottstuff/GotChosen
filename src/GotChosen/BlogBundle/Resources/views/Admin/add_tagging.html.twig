@@ -1,0 +1,12 @@
+{% block body %}
+    <div class="container">
+        {% include 'GotChosenBlogBundle:Default:Blocks/nav.html.twig' %}
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h2 class="title">Add Tag</h2>
+            
+                {% include 'GotChosenBlogBundle:Admin:Blocks/add_tagging_form.html.twig' %}
+
+        </div>
+    </div>
+{% endblock %}

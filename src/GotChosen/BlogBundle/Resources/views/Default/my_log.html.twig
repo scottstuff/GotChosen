@@ -1,0 +1,128 @@
+{% extends "::base.html.twig" %}
+{% block title %}GotChosen | Add Post{% endblock %}
+{% block body %}
+    <div class="container">
+        {% include 'GotChosenBlogBundle:Default:Blocks/nav.html.twig' %}
+
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h1>My Log</h1>
+            <p>The following is a bulleted list of my experience with the GotChosen.com Project. I list what I did and list several questions.</p>
+        </div>
+        <div class="jumbotron">
+            <ol>
+                <li>Used an old Windows machine with XAMPP</li>
+                    <ul>
+                        <li>Why? My kid had a homework assignment.</li>
+                    </ul>
+                <li>Start with creating Symfony with Compser.</li>
+                    <ul>
+                        <li>Use: composer create-project symfony/framework-standard-edition path/ 2.4.2</li>
+                    </ul>
+                <li>Create a Symfony Bundle with console tool</li>
+                    <ul>
+                        <li>php app/console generate:bundle --namespace=GotChosen/BlogBundle --format=annotation<li>
+                        <li>Every default was used except: Do you want to generate the whole directory structure [no]? yes<li>
+                    </ul>
+                <li>Create Splash Page</li>
+                <li>Create Site Map</li>
+                <li>Add Bootstrap to Symfony</li>
+                    <ul>
+                        <li>Not Easy – Bootstrap 3 several dependency and took a while with composer</li>
+                        <li>After Googling for awhile, found this: https://coderwall.com/p/kzyiaw</li>
+                        <li>The java path was for Linux and was giving me a cryptic error.</li>
+                    </ul>
+                <li>Create Database and tables</li>
+                    <ol>
+                        <li>Author</li>
+                            <ul>
+                                <li>Id</li>
+                                <li>first_name</li>
+                                <li>last_name</li>
+                                <li>user_type</li>
+                                <li>user_name</li>
+                                <li>password</li>
+                            </ul>
+                        <li>Posting</li>
+                            <ul>
+                                <li>id</li>
+                                <li>post_title</li>
+                                <li>post_body</li>
+                                <li>post_time</li>
+                            </ul>
+                        <li>Tag<li>
+                            <ul>
+                                <li>Id</li>
+                                <li>tag_name</li>
+                            </ul>
+                        <li>posts_tags</li>
+                            <ul>
+                                <li>Id</li>
+                                <li>Post_id</li>
+                                <li>Tag_id</li>
+                            </ul>
+                    </ol>
+                <li>Generate Entities</li>
+                    <ul>
+                        <li>php app/console doctrine:schema:update –force</li>
+                    </ul>
+                <li>Created controllers and views based on site map</li>
+                <li>Created FormType Class for form reuse</li>
+                    <ul>
+                        <li>Never done this. Always used twig in the past. I may like the class approach better.</li>
+                    </ul>
+                <li>Tried to create view "Blocks" but twig includes would allow a Block Directory at ../view/Blocks.</li>
+                    <ul>
+                        <li>Not sure why. Googled a little and decided to punt.</li>
+                        <li>I added a Block directory to Default and all worked.</li>
+                    </ul>
+                <li>Create Repositories to separate out database interactions. Separation of concern.</li>
+                <li>Implemented ServiceManagers for Enities</li>
+                    <ul>
+                        <li>Never done this Symfony. Only had a small app. Very enjoyable learning process.</li>
+                        <li>I skimmed the Symfony documentation on dependency injection and would like to re-read it. There’s a lot there.</li>
+                    </ul>
+                <li>Took Security Manager from the ACME demo.</li>
+                    <ul>
+                        <li>It gave me fits. I couldn’t figure out how it was grabbing the request and routing it.</li>
+                        <li>The ACME bundle configurations in app/config/security.yml. That took awhile to unravel.</li>
+                        <li>Went to the Symfony site and copied and pasted the "cheesy" authentication pop up box.</li>
+                        <li>If I have time I'll go back and put in a web based form.</li>
+                    </ul>
+                <li>Many-to-Many Doctrine is a pain.</li>
+                    <ul>
+                        <li>Many-to-Many needs to be any ArrayCollection and not a Doctrine Entity. Not sure why.</li>
+                        <li>I first implmented the Form Builer Form Type entity for the Many-to-Many relationships. Bad idea.</li>
+                        <li>After reading some stackoverflow.com posts and then Symfony docs, I need to use the collection type.</li>
+                        <li>I tried to get the protype property working to pull values from the database. I could get that working in the time I had.</li>
+                        <li>I implemented adding tags with jQuery.</li>
+                        <li>This implemenation allows duplicate tags. If I have time I refactor that.</li>
+                        <li>I used the app/console doctrine:generate:entities. I havd bad experience with it the past, but this really helped with many-to-many.</li>
+                    </ul>
+                <li>JSON implementation.</li>
+                    <ul>
+                        <li>I implemented that JSON using jQuery.</li>
+                        <li>First I used AJAX for the listing of Posts. Pretty straight forward.</li>
+                        <li>I do a full page JSON for the individual Posting. I couldn't use the Symfony serializer and encoders to convert a Doctrine Object to a JSON string.</li>
+                        <li>It was memory hog and timed out.</li>
+                        <li>I then used good old native PHP to interate through the Object and to create an array.</li>
+                        <li>I also tried to use Doctrine Array HYDRATION but it doesn't hidrate relation objects.</li>
+                    </ul>
+                <li>Doctrine createQuery.</li>
+                    <ul>
+                        <li>I couldn't get Posts to sort in Data Order. Not sure why.</li>
+                        <li>Maybe because of the Many to Many?</li>
+                    </ul>
+                <li>Refactor</li>
+                    <ul>
+                        <li>As I have been doing a little QA on the Project. I see a lot of room for refactoring.</li>
+                        <li>If there's something that you see, please ask me about it.</li>
+                    </ul>
+            </ol>
+
+        </div>
+
+    </div> <!-- /container -->
+
+
+{% endblock %}
